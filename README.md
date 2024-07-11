@@ -165,7 +165,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
     - Open the Microsoft Store app on your PC, and download & install Ubuntu 22.04.3 LTS
     
         <p align="center">
-        <img src="https://github.com/abgulati/LARS/blob/main/images/ubuntu_for_docker_wsl.png"  align="center">
+        <img src="https://github.com/abgulati/kosmos-2_5-containerized/blob/main/images/ubuntu_for_docker_wsl.png"  align="center">
         </p>
 
     - Launch an Ubuntu shell in Windows by searching for ```Ubuntu``` in the Start-menu after the installation above is completed
@@ -182,7 +182,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
     -  Navigate to ```Docker Desktop -> Settings -> Resources -> WSL Integration``` -> Check Default & Ubuntu 22.04 integrations. Refer to the screenshot below:
     
         <p align="center">
-        <img src="https://github.com/abgulati/LARS/blob/main/images/docker_wsl_integration.png"  align="center">
+        <img src="https://github.com/abgulati/kosmos-2_5-containerized/blob/main/images/docker_wsl_integration.png"  align="center">
         </p>
 
 ### 4. Nvidia Container Toolkit
@@ -320,7 +320,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
     - Refer to the screenshot below:
     <p align="center">
-    <img src="https://github.com/abgulati/kosmos-2_5-containerized/blob/main/images/postman-setup.png"  align="center">
+    <img src="https://github.com/abgulati/kosmos-2_5-containerized/blob/main/images/POSTMAN-Setup.png"  align="center">
     </p>
 
     - Open Postman
