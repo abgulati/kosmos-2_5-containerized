@@ -1,7 +1,9 @@
 # Containerizing Microsoft's Kosmos-2.5 Multimodal-LLM (MLLM) for Local OCR via a RESTful API
 
 [Official Kosmos-2.5 Repo](https://github.com/microsoft/unilm/tree/master/kosmos-2.5)
+
 [Official Flash Attention Repo](https://github.com/Dao-AILab/flash-attention)
+
 
 | ![Image 1](kosmos-2_5-container-files/kosmos-2_5/assets/example/in.png) | ![Image 2](kosmos-2_5-container-files/kosmos-2_5/assets/example/in.png) | ![Image 3](kosmos-2_5-container-files/kosmos-2_5/assets/example/in.png) |
 |:-----------------------------------------------------------------------:|:-----------------------------------------------------------------------:|:-----------------------------------------------------------------------:|
