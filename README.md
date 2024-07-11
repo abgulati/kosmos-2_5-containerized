@@ -431,7 +431,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 ## Rebuilding the Dependencies & Container - If the Pre-Built Image & dockerfile in this Repo Fail to Work
 
-- If the pre-built image provided in this repository don't work, and neither does a fresh `docker build` with the dockerfile provided, it may be an issue with re-using the [prebuilt wheels](https://github.com/abgulati/)
+- If the pre-built image provided in this repository don't work, and neither does a fresh `docker build` with the dockerfile provided, it may be an issue with re-using the [prebuilt wheels](https://github.com/abgulati/kosmos-2_5-containerized/tree/main/kosmos-2_5-container-files/prebuilt_wheels)
 
 - In this case, you may elect to build these dependencies on your system via either of the options below - strap in with your favorite drink (or three) as this is going to be a long ride!
 
@@ -686,7 +686,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 - As a result, you may wish you configure a Python virtual environment
 
-- Requirements (in addition to [Dependencies](https://github.com/abgulati/) above)
+- Requirements (in addition to [Dependencies](https://github.com/abgulati/kosmos-2_5-containerized/tree/main?tab=readme-ov-file#dependencies) above)
 
     - Linux, as `triton` is officially only supported on Linux
 
