@@ -687,7 +687,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 - As a result, you may wish you configure a Python virtual environment
 
-- Requirements (in addition to [Dependencies](https://github.com/abgulati/kosmos-2_5-containerized/tree/main?tab=readme-ov-file#dependencies) above)
+- Requirements (in addition to [Dependencies](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#dependencies) above)
 
     - Linux, as `triton` is officially only supported on Linux
 
