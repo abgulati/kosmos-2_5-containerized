@@ -697,7 +697,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 - In a bash shell (search for ```Ubuntu``` in the Start-menu in Windows), perform the following steps:
 
-    - Install CUDA Toolkit v12.4.1:
+    - Install CUDA Toolkit v12.4.1 (or appropriate version for your system):
 
         ```
         wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
@@ -752,7 +752,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
             ```
             sudo apt install python3-pip
-            pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu124
+            pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu124   # modify CUDA version if required - https://pytorch.org/get-started/locally/
             ```
 
         - install dependencies:
