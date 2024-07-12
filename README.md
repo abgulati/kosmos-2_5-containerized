@@ -10,6 +10,33 @@
 |                           **(a) Input**                                 |                        **(b) Using the ocr prompt**                     |                        **(c) Using the markdown prompt**                |
 
 
+## Table of Contents
+
+1. [Containerizing Microsoft's Kosmos-2.5 Multimodal-LLM (MLLM) for Local OCR via a RESTful API](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#containerizing-microsofts-kosmos-25-multimodal-llm-mllm-for-local-ocr-via-a-restful-api)
+2. [Introduction](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#introduction)
+    - [The Significance of OCR in the LLM-Landscape](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#the-significance-of-ocr-in-the-llm-landscape)
+    - [RAG-Refresher](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#rag-refresher)
+    - [Kosmos-2.5](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#kosmos-25)
+2. [Dependencies](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#dependencies)
+    - [1. Nvidia Ampere, Hopper or Ada-Lovelace GPU with minimum 12GB VRAM](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#1-nvidia-ampere-hopper-or-ada-lovelace-gpu-with-minimum-12gb-vram)
+    - [2. Nvidia CUDA v12.4.1](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#2-nvidia-cuda-v1241)
+    - [3. Docker (with WSL2 on Windows11)](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#3-docker-with-wsl2-on-windows11)
+    - [4. Nvidia Container Toolkit](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#4-nvidia-container-toolkit)
+3. [Installing & Deploying the Kosmos-2.5 Pre-Built Docker Image](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#installing--deploying-the-kosmos-25-pre-built-docker-image)
+4. [Building the Docker Image](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#building-the-docker-image)
+5. [API Specification](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#api-specification)
+6. [Invoke Kosmos-2.5 API - /infer endpoint](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#invoke-kosmos-25-api---infer-endpoint)
+    - [via POSTMAN](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-postman)
+    - [via CURL](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-curl)
+    - [via Python Requests](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-python-requests)
+    - [via JavaScript - Fetch](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-javascript---fetch)
+    - [via JavaScript - jQuery](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-javascript---jquery)
+7. [Rebuilding the Dependencies & Container - If the Pre-Built Image & dockerfile in this Repo Fail to Work](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#rebuilding-the-dependencies--container---if-the-pre-built-image--dockerfile-in-this-repo-fail-to-work)
+    - [Option 1 (recommended) - Pre-Build Dependencies in Host Machine & Re-use for `docker build`](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#option-1-recommended---pre-build-dependencies-in-host-machine--re-use-for-docker-build)
+    - [Option 2 (very slow) - Build Dependencies Within Container with `docker build`](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#option-2-very-slow---build-dependencies-within-container-with-docker-build)
+8. [Running Kosmos-2.5 Uncontainerized](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#running-kosmos-25-uncontainerized)
+
+
 ## Introduction
 
 ### The Significance of OCR in the LLM-Landscape
@@ -39,33 +66,6 @@ However, it's no easy feat to get this model up and running locally on your devi
 With such specific dependencies that can even hinder the deployment of other local LLMs, how can this model be made to co-exist alongside actual real-world applications and more crucially, be made to serve those applications in a useful manner?
 
 While I cannot liberate the hardware requirements, I did see an opportunity to address the software challenges: by containerizing the model and its dependencies and leveraging PyFlask to expose the model over a RESTful API, Kosmos-2.5 can be made available as a service, thus providing fully local & high-performance OCR capabilities by leveraging a cutting-edge MLLM!
-
-
-## Table of Contents
-
-1. [Containerizing Microsoft's Kosmos-2.5 Multimodal-LLM (MLLM) for Local OCR via a RESTful API](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#containerizing-microsofts-kosmos-25-multimodal-llm-mllm-for-local-ocr-via-a-restful-api)
-2. [Introduction](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#introduction)
-    - [The Significance of OCR in the LLM-Landscape](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#the-significance-of-ocr-in-the-llm-landscape)
-    - [RAG-Refresher](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#rag-refresher)
-	- [Kosmos-2.5](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#kosmos-25)
-2. [Dependencies](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#dependencies)
-    - [1. Nvidia Ampere, Hopper or Ada-Lovelace GPU with minimum 12GB VRAM](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#1-nvidia-ampere-hopper-or-ada-lovelace-gpu-with-minimum-12gb-vram)
-    - [2. Nvidia CUDA v12.4.1](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#2-nvidia-cuda-v1241)
-    - [3. Docker (with WSL2 on Windows11)](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#3-docker-with-wsl2-on-windows11)
-    - [4. Nvidia Container Toolkit](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#4-nvidia-container-toolkit)
-3. [Installing & Deploying the Kosmos-2.5 Pre-Built Docker Image](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#installing--deploying-the-kosmos-25-pre-built-docker-image)
-4. [Building the Docker Image](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#building-the-docker-image)
-5. [API Specification](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#api-specification)
-6. [Invoke Kosmos-2.5 API - /infer endpoint](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#invoke-kosmos-25-api---infer-endpoint)
-    - [via POSTMAN](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-postman)
-    - [via CURL](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-curl)
-    - [via Python Requests](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-python-requests)
-    - [via JavaScript - Fetch](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-javascript---fetch)
-    - [via JavaScript - jQuery](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-javascript---jquery)
-7. [Rebuilding the Dependencies & Container - If the Pre-Built Image & dockerfile in this Repo Fail to Work](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#rebuilding-the-dependencies--container---if-the-pre-built-image--dockerfile-in-this-repo-fail-to-work)
-    - [Option 1 (recommended) - Pre-Build Dependencies in Host Machine & Re-use for `docker build`](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#option-1-recommended---pre-build-dependencies-in-host-machine--re-use-for-docker-build)
-    - [Option 2 (very slow) - Build Dependencies Within Container with `docker build`](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#option-2-very-slow---build-dependencies-within-container-with-docker-build)
-8. [Running Kosmos-2.5 Uncontainerized](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#running-kosmos-25-uncontainerized)
 
 
 ## Dependencies
