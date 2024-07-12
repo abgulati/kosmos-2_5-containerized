@@ -5,7 +5,7 @@
 [Official Flash Attention Repo](https://github.com/Dao-AILab/flash-attention)
 
 
-| ![Image 1](kosmos-2_5-container-files/kosmos-2_5/assets/example/in.png) | ![Image 2](kosmos-2_5-container-files/kosmos-2_5/assets/example/in.png) | ![Image 3](kosmos-2_5-container-files/kosmos-2_5/assets/example/in.png) |
+| ![Image 1](kosmos-2_5-container-files/kosmos-2_5/assets/example/in.png) | ![Image 2](kosmos-2_5-container-files/kosmos-2_5/assets/example/ocr.png) | ![Image 3](kosmos-2_5-container-files/kosmos-2_5/assets/example/md.png) |
 |:-----------------------------------------------------------------------:|:-----------------------------------------------------------------------:|:-----------------------------------------------------------------------:|
 |                           **(a) Input**                                 |                        **(b) Using the ocr prompt**                     |                        **(c) Using the markdown prompt**                |
 
