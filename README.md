@@ -589,7 +589,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         git clone https://github.com/Dao-AILab/flash-attention.git
         ```
 
-- Modify the `dockerfile` as below (MODIFY AS PER COMMENTS):
+- Replace the existing `dockerfile` with the one below (MODIFY IT AS PER COMMENTS!):
 
     ```
     # Use an official Nvidia CUDA runtime as a parent image - MODIFY CUDA VERSION AS REQUIRED
