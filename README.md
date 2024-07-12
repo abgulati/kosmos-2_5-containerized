@@ -43,29 +43,29 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 ## Table of Contents
 
-1. [Containerizing Microsoft's Kosmos-2.5 Multimodal-LLM (MLLM) for Local OCR via a RESTful API](https://github.com/abgulati/)
-2. [Introduction](https://github.com/abgulati/)
-    - [The Significance of OCR in the LLM-Landscape](https://github.com/abgulati/)
-    - [RAG-Refresher](https://github.com/abgulati/)
-	- [Kosmos-2.5](https://github.com/abgulati/)
-2. [Dependencies](https://github.com/abgulati/)
-    - [1. Nvidia Ampere, Hopper or Ada-Lovelace GPU with minimum 12GB VRAM](https://github.com/abgulati/)
-    - [2. Nvidia CUDA v12.4.1](https://github.com/abgulati/)
-    - [3. Docker (with WSL2 on Windows11)](https://github.com/abgulati/)
-    - [4. Nvidia Container Toolkit](https://github.com/abgulati/)
-3. [Installing & Deploying the Kosmos-2.5 Pre-Built Docker Image](https://github.com/abgulati/)
-4. [Building the Docker Image](https://github.com/abgulati/)
-5. [API Specification](https://github.com/abgulati/)
-6. [Invoke Kosmos-2.5 API - /infer endpoint](https://github.com/abgulati/)
-    - [via POSTMAN](https://github.com/abgulati/)
-    - [via CURL](https://github.com/abgulati/)
-    - [via Python Requests](https://github.com/abgulati/)
-    - [via JavaScript - Fetch](https://github.com/abgulati/)
-    - [via JavaScript - jQuery](https://github.com/abgulati/)
-7. [Rebuilding the Dependencies & Container - If the Pre-Built Image & dockerfile in this Repo Fail to Work](https://github.com/abgulati/)
-    - [Option 1 (recommended) - Pre-Build Dependencies in Host Machine & Re-use for `docker build`](https://github.com/abgulati/)
-    - [Option 2 (very slow) - Build Dependencies Within Container with `docker build`](https://github.com/abgulati/)
-8. [Running Kosmos-2.5 Uncontainerized](https://github.com/abgulati/)
+1. [Containerizing Microsoft's Kosmos-2.5 Multimodal-LLM (MLLM) for Local OCR via a RESTful API](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#containerizing-microsofts-kosmos-25-multimodal-llm-mllm-for-local-ocr-via-a-restful-api)
+2. [Introduction](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#introduction)
+    - [The Significance of OCR in the LLM-Landscape](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#the-significance-of-ocr-in-the-llm-landscape)
+    - [RAG-Refresher](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#rag-refresher)
+	- [Kosmos-2.5](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#kosmos-25)
+2. [Dependencies](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#dependencies)
+    - [1. Nvidia Ampere, Hopper or Ada-Lovelace GPU with minimum 12GB VRAM](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#1-nvidia-ampere-hopper-or-ada-lovelace-gpu-with-minimum-12gb-vram)
+    - [2. Nvidia CUDA v12.4.1](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#2-nvidia-cuda-v1241)
+    - [3. Docker (with WSL2 on Windows11)](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#3-docker-with-wsl2-on-windows11)
+    - [4. Nvidia Container Toolkit](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#4-nvidia-container-toolkit)
+3. [Installing & Deploying the Kosmos-2.5 Pre-Built Docker Image](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#installing--deploying-the-kosmos-25-pre-built-docker-image)
+4. [Building the Docker Image](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#building-the-docker-image)
+5. [API Specification](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#api-specification)
+6. [Invoke Kosmos-2.5 API - /infer endpoint](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#invoke-kosmos-25-api---infer-endpoint)
+    - [via POSTMAN](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-postman)
+    - [via CURL](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-curl)
+    - [via Python Requests](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-python-requests)
+    - [via JavaScript - Fetch](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-javascript---fetch)
+    - [via JavaScript - jQuery](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#via-javascript---jquery)
+7. [Rebuilding the Dependencies & Container - If the Pre-Built Image & dockerfile in this Repo Fail to Work](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#rebuilding-the-dependencies--container---if-the-pre-built-image--dockerfile-in-this-repo-fail-to-work)
+    - [Option 1 (recommended) - Pre-Build Dependencies in Host Machine & Re-use for `docker build`](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#option-1-recommended---pre-build-dependencies-in-host-machine--re-use-for-docker-build)
+    - [Option 2 (very slow) - Build Dependencies Within Container with `docker build`](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#option-2-very-slow---build-dependencies-within-container-with-docker-build)
+8. [Running Kosmos-2.5 Uncontainerized](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#running-kosmos-25-uncontainerized)
 
 
 ## Dependencies
@@ -216,14 +216,12 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         sudo systemctl restart docker
         ```
 
+[Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
+
 
 ## Installing & Deploying the Kosmos-2.5 Pre-Built Docker Image
 
-1. Download the pre-built image from my Google Drive (too big to host on GitHub):
-
-    ```
-    https://drive.google.com/file/d/18R4XxOmH8R8wwtvhyPM0PCMiO58If2wY/view?usp=sharing
-    ```
+1. Download the pre-built image from my Google Drive (only way I could host it for free!): https://drive.google.com/file/d/18R4XxOmH8R8wwtvhyPM0PCMiO58If2wY/view?usp=sharing
 
 2. Import Image into Docker:
 
@@ -236,6 +234,8 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
     ```
     docker run --gpus all -p 25000:25000 kosmos-2_5
     ```
+
+[Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
 
 
 ## Building the Docker Image
@@ -262,6 +262,8 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         # To build without using cached data:
         docker build --progress=plain --no-cache -t kosmos-2_5 .
         ```
+
+[Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
 
 
 ## API Specification
@@ -310,6 +312,8 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
         Response: `{'error': 'Invalid file type'}` 
         Code: `400`
+
+[Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
 
 
 ## Invoke Kosmos-2.5 API - /infer endpoint
@@ -429,6 +433,9 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
     });
     ```
 
+[Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
+
+
 ## Rebuilding the Dependencies & Container - If the Pre-Built Image & dockerfile in this Repo Fail to Work
 
 - If the pre-built image provided in this repository don't work, and neither does a fresh `docker build` with the dockerfile provided, it may be an issue with re-using the [prebuilt wheels](https://github.com/abgulati/kosmos-2_5-containerized/tree/main/kosmos-2_5-container-files/prebuilt_wheels)
@@ -542,13 +549,9 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 4. Build Container:
 
-    - Download the Kosmos-2.5 model checkpoint to the `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files/kosmos-2_5` directory:
+    - Download the Kosmos-2.5 model checkpoint to the `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files/kosmos-2_5` directory: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
 
-        ```
-        https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
-
-        # Based on model checkpoint from: https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
-        ```
+    - Note: The checkpoint above is the same as the official model checkpoint from: https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
 
     - Navigate to `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files`
 
@@ -570,13 +573,9 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 - If you still chose this route, then you must download the Kosmos-2.5 model checkpoint, clone the `flash-attention` repo, modify the supplied `dockerfile` and use `docker build`:
 
-    - Download the Kosmos-2.5 model checkpoint to the `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files/kosmos-2_5` directory:
+    - Download the Kosmos-2.5 model checkpoint to the `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files/kosmos-2_5` directory: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
 
-        ```
-        https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
-
-        # Based on model checkpoint from: https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
-        ```
+    - Note: The checkpoint above is the same as the official model checkpoint from: https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
 
     - Navigate to `kosmos-2_5-containerized/kosmos-2_5-container-files`:
 
@@ -678,6 +677,8 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
     - Keep an eye on resource use via the Task Managers `Performance` tab, modify the values above as required
 
 - You may also try to build with increased verbosity as required to diagnose any other issues: `pip install -vvv . --no-build-isolation` 
+
+[Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
 
 
 ## Running Kosmos-2.5 Uncontainerized
@@ -823,3 +824,5 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
             python3 inference.py --do_md --image assets/example/in.png -- ckpt ckpt.pt
 
             ```
+
+[Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
