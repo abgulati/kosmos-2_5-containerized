@@ -240,7 +240,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 ## Building the Docker Image
 
-- If for any reason you prefer to build the image yourself rather than using the pre-built image, simply clone the `flash-attention` repo, download the Kosmos-2.5 model checkpoint, and use `docker build`:
+- If for any reason you prefer to build the image yourself rather than using the pre-built image, start by cloning this repo, followed by cloning the `flash-attention` repo, downloading the Kosmos-2.5 model checkpoint, and using `docker build`:
 
     - Navigate to `kosmos-2_5-containerized/kosmos-2_5-container-files`:
 
@@ -253,6 +253,10 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         ```
         git clone https://github.com/Dao-AILab/flash-attention.git
         ```
+
+    - Download the Kosmos-2.5 model checkpoint to the `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files/kosmos-2_5` directory: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
+
+    - Note: The checkpoint above is the same as the official model checkpoint from: https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
 
     - Build:
 
