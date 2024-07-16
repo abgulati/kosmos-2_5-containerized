@@ -678,6 +678,21 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         swap=80GB
         ```
 
+    - Restart WSL for changes to take effect:
+
+        ```
+        # via command-prompt / PowerShell:
+
+        wsl --shutdown
+
+        # Confirm no distros are running:
+
+        wsl --list --running    # should show "There are no running distributions."
+
+        # Restart:
+
+        wsl
+        ```
     - Keep an eye on resource use via the Task Managers `Performance` tab, modify the values above as required
 
 - You may also try to build with increased verbosity as required to diagnose any other issues: `pip install -vvv . --no-build-isolation` 
