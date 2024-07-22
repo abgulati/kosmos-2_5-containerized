@@ -586,6 +586,9 @@ ENV TZ=America/Los_Angeles
 # Set the working directory in the container
 WORKDIR /app
 
+# Install Python & PIP and git & wget to clone model repo and download model checkpoint
+RUN apt-get update && apt-get install -y python3.10 python3-pip git wget
+
 # Copy the current directory contents into the container at /app
 COPY . /app
 
@@ -595,9 +598,6 @@ ENV MAX_JOBS=16
 
 # OPTIONAL - Change fPIC level, and Set CUDA optimizations as per your GPU arch - `arch=compute_86,code=sm_86` is for RTX 3000 Ampere, `arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90` is for Ampere & Hopper etc
 # ENV CUDA_NVCC_FLAGS="-Xcompiler -fPIC -O3 --use_fast_math -gencode arch=compute_86,code=sm_86"
-
-# Install Python & PIP
-RUN apt-get update && apt-get install -y python3.10 python3-pip git
 
 # Install PyTorch Nightly Build for CUDA 12.4, dependencies for Flash Attention 2 and initial dependencies for Kosmos-2.5
 RUN pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu124 && \
