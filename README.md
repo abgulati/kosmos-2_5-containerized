@@ -253,7 +253,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         docker build --progress=plain --no-cache -t kosmos-2_5 .
         ```
 
-    - Note: A snapshot of the official model checkpoint at the time repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
+    - Note: A snapshot of the official model checkpoint at the time this repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
 
 
 [Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
@@ -553,7 +553,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         docker build --progress=plain --no-cache -t kosmos-2_5 .
         ```
 
-    - Note: A snapshot of the official model checkpoint at the time repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
+    - Note: A snapshot of the official model checkpoint at the time this repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
 
 
 
@@ -638,7 +638,7 @@ WORKDIR /app/kosmos-2_5
 CMD ["python3", "kosmos_api.py"]
 ```
 
-- Note: A snapshot of the official model checkpoint at the time repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
+- Note: A snapshot of the official model checkpoint at the time this repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
 
 - Run Docker Build:
 
