@@ -240,23 +240,9 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 ## Building the Docker Image
 
-- If for any reason you prefer to build the image yourself rather than using the pre-built image, start by cloning this repo, followed by cloning the `flash-attention` repo, downloading the Kosmos-2.5 model checkpoint, and using `docker build`:
+- If for any reason you prefer to build the image yourself rather than using the pre-built image, simply clone this repo and use `docker build`:
 
-    - Navigate to `kosmos-2_5-containerized/kosmos-2_5-container-files`:
-
-        ```
-        cd kosmos-2_5-containerized/kosmos-2_5-container-files
-        ```
-
-    - Clone the flash-attention repository:
-
-        ```
-        git clone https://github.com/Dao-AILab/flash-attention.git
-        ```
-
-    - Download the Kosmos-2.5 model checkpoint to the `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files/kosmos-2_5` directory: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
-
-    - Note: The checkpoint above is the same as the official model checkpoint from: https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
+    - Navigate to `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files`
 
     - Build:
 
@@ -266,6 +252,9 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         # To build without using cached data:
         docker build --progress=plain --no-cache -t kosmos-2_5 .
         ```
+
+    - Note: A snapshot of the official model checkpoint at the time repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
+
 
 [Back to Table of Contents](https://github.com/abgulati/kosmos-2_5-containerized?tab=readme-ov-file#table-of-contents)
 
@@ -553,10 +542,6 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 4. Build Container:
 
-    - Download the Kosmos-2.5 model checkpoint to the `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files/kosmos-2_5` directory: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
-
-    - Note: The checkpoint above is the same as the official model checkpoint from: https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
-
     - Navigate to `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files`
 
     - Run Docker Build:
@@ -568,6 +553,9 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         docker build --progress=plain --no-cache -t kosmos-2_5 .
         ```
 
+    - Note: A snapshot of the official model checkpoint at the time repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
+
+
 
 ### Option 2 (very slow) - Build Dependencies Within Container with `docker build`
 
@@ -575,11 +563,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
 
 - For instance, building the `flash-attention` library takes about an hour on my host system (Windows 11, Intel Core i9 13900KF, RTX 3090) while fitting comfortably within the 32GB SysRAM. Within the container build though, it wasn't even half done after an hour and an additional 100GB pagefile was necessary to augment the SysRAM! 
 
-- If you still chose this route, then you must download the Kosmos-2.5 model checkpoint, clone the `flash-attention` repo, modify the supplied `dockerfile` and use `docker build`:
-
-    - Download the Kosmos-2.5 model checkpoint to the `<path_to_cloned_kosmos_container_repo>/kosmos-2_5-container-files/kosmos-2_5` directory: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
-
-    - Note: The checkpoint above is the same as the official model checkpoint from: https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
+- If you still chose this route, then clone this repo, replace the supplied `dockerfile` with the one below and use `docker build`:
 
     - Navigate to `kosmos-2_5-containerized/kosmos-2_5-container-files`:
 
@@ -587,72 +571,74 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
         cd kosmos-2_5-containerized/kosmos-2_5-container-files
         ```
 
-    - Clone the flash-attention repository:
-
-        ```
-        git clone https://github.com/Dao-AILab/flash-attention.git
-        ```
-
 - Replace the existing `dockerfile` with the one below (MODIFY IT AS PER COMMENTS!):
 
-    ```
-    # Use an official Nvidia CUDA runtime as a parent image - MODIFY CUDA VERSION AS REQUIRED
-    FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
+```
+# Use an official Nvidia CUDA runtime as a parent image - MODIFY CUDA VERSION AS REQUIRED
+FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
 
-    # Avoid interactive prompts - auto-select defaults for any prompts 
-    ARG DEBIAN_FRONTEND=noninteractive
+# Avoid interactive prompts - auto-select defaults for any prompts 
+ARG DEBIAN_FRONTEND=noninteractive
 
-    # Set timezone for tzdata package as it's a dependency for some packages
-    ENV TZ=America/Los_Angeles
+# Set timezone for tzdata package as it's a dependency for some packages
+ENV TZ=America/Los_Angeles
 
-    # Set the working directory in the container
-    WORKDIR /app
+# Set the working directory in the container
+WORKDIR /app
 
-    # Copy the current directory contents into the container at /app
-    COPY . /app
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-    # Setting environment variables to maximize use of available hardware resources - MODIFY MAX_JOBS AS PER YOUR CPU LOGICAL CORE COUNT
-    ENV MAKEFLAGS="-j$(nproc)"
-    ENV MAX_JOBS=16
+# Setting environment variables to maximize use of available hardware resources - MODIFY MAX_JOBS AS PER YOUR CPU LOGICAL CORE COUNT
+ENV MAKEFLAGS="-j$(nproc)"
+ENV MAX_JOBS=16
 
-    # OPTIONAL - Change fPIC level, and Set CUDA optimizations as per your GPU arch - `arch=compute_86,code=sm_86` is for RTX 3000 Ampere, `arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90` is for Ampere & Hopper etc
-    # ENV CUDA_NVCC_FLAGS="-Xcompiler -fPIC -O3 --use_fast_math -gencode arch=compute_86,code=sm_86"
+# OPTIONAL - Change fPIC level, and Set CUDA optimizations as per your GPU arch - `arch=compute_86,code=sm_86` is for RTX 3000 Ampere, `arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90` is for Ampere & Hopper etc
+# ENV CUDA_NVCC_FLAGS="-Xcompiler -fPIC -O3 --use_fast_math -gencode arch=compute_86,code=sm_86"
 
-    # Install Python & PIP
-    RUN apt-get update && apt-get install -y python3.10 python3-pip git
+# Install Python & PIP
+RUN apt-get update && apt-get install -y python3.10 python3-pip git
 
-    # Install PyTorch Nightly Build for CUDA 12.4, dependencies for Flash Attention 2 and initial dependencies for Kosmos-2.5
-    RUN pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu124 && \
-        pip install -v wheel==0.37.1 ninja==1.11.1 packaging==24.1 numpy==1.22 psutil==6.0.0 && \
-        pip install -v tiktoken tqdm "omegaconf<=2.1.0" boto3 iopath "fairscale==0.4" "scipy==1.10" triton flask
+# Install PyTorch Nightly Build for CUDA 12.4, dependencies for Flash Attention 2 and initial dependencies for Kosmos-2.5
+RUN pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu124 && \
+    pip install -v wheel==0.37.1 ninja==1.11.1 packaging==24.1 numpy==1.22 psutil==6.0.0 && \
+    pip install -v tiktoken tqdm "omegaconf<=2.1.0" boto3 iopath "fairscale==0.4" "scipy==1.10" triton flask
 
-    # Set work directory to install flash-attention 
-    WORKDIR /app/flash-attention
+# Clone specific flash-attn release
+RUN git clone -b v2.5.9.post1 https://github.com/Dao-AILab/flash-attention.git
 
-    RUN pip install . --no-build-isolation
+# Set work directory to install flash-attention 
+WORKDIR /app/flash-attention
 
-    # Change back to the main app directory
-    WORKDIR /app
+RUN pip install . --no-build-isolation
 
-    # Install remaining dependencies for Kosmos-2.5 from custom repos
-    RUN pip install -v git+https://github.com/facebookresearch/xformers.git@04de99bb28aa6de8d48fab3cdbbc9e3874c994b8 && \
-        pip install -v git+https://github.com/Dod-o/kosmos2.5_tools.git@fairseq && \
-        pip install -v git+https://github.com/Dod-o/kosmos2.5_tools.git@infinibatch && \
-        pip install -v git+https://github.com/Dod-o/kosmos2.5_tools.git@torchscale && \
-        pip install -v git+https://github.com/Dod-o/kosmos2.5_tools.git@transformers
+# Change back to the main app directory
+WORKDIR /app
 
-    # Create image upload directory, no error if already exists
-    RUN mkdir -p /tmp
+# Clone model checkpoint
+RUN wget -P /app/kosmos-2_5 https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
 
-    # Make port 25000 available to the world outside this container - MODIFY IF DESIRED
-    EXPOSE 25000
+# Install remaining dependencies for Kosmos-2.5 from custom repos
+RUN pip install -v git+https://github.com/facebookresearch/xformers.git@04de99bb28aa6de8d48fab3cdbbc9e3874c994b8 && \
+    pip install -v git+https://github.com/Dod-o/kosmos2.5_tools.git@fairseq && \
+    pip install -v git+https://github.com/Dod-o/kosmos2.5_tools.git@infinibatch && \
+    pip install -v git+https://github.com/Dod-o/kosmos2.5_tools.git@torchscale && \
+    pip install -v git+https://github.com/Dod-o/kosmos2.5_tools.git@transformers
 
-    # Change back to the main app directory
-    WORKDIR /app/kosmos-2_5
+# Create image upload directory, no error if already exists
+RUN mkdir -p /tmp
 
-    # Run application
-    CMD ["python3", "kosmos_api.py"]
-    ```
+# Make port 25000 available to the world outside this container - MODIFY IF DESIRED
+EXPOSE 25000
+
+# Change back to the main app directory
+WORKDIR /app/kosmos-2_5
+
+# Run application
+CMD ["python3", "kosmos_api.py"]
+```
+
+- Note: A snapshot of the official model checkpoint at the time repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
 
 - Run Docker Build:
 
