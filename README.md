@@ -586,8 +586,19 @@ ENV TZ=America/Los_Angeles
 # Set the working directory in the container
 WORKDIR /app
 
-# Install Python & PIP and git & wget to clone model repo and download model checkpoint
-RUN apt-get update && apt-get install -y python3.10 python3-pip git wget
+# Install Python & PIP and git & wget to clone model repo and download model checkpoint - build-essential includes GCC, G++, and make; libffi-dev for Foreign Function Interface (FFI); libssl-dev for SSL support
+RUN apt-get update && apt-get install -y \
+    python3.10 \
+    python3-pip \
+    software-properties-common \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    git \
+    wget \
+    net-tools \
+    iproute2 \
+    cuda-toolkit-12-4
 
 # Copy the current directory contents into the container at /app
 COPY . /app
