@@ -773,7 +773,7 @@ CMD ["python3", "kosmos_api.py"]
         - `git clone` and `cd` repo:
 
             ```
-            git clone https://github.com/Dao-AILab/flash-attention.git
+            git clone -b v2.5.9.post1 https://github.com/Dao-AILab/flash-attention.git
             cd flash-attention
             ```
 
@@ -820,6 +820,9 @@ CMD ["python3", "kosmos_api.py"]
 
             wget https://huggingface.co/microsoft/kosmos-2.5/resolve/main/ckpt.pt
             ```
+
+        - Note: A snapshot of the official model checkpoint at the time this repo was created can also be obtained from my backup here: https://drive.google.com/file/d/17RwlniqMwbLEMj5ELQd9iQ4kor749Z0e/view?usp=sharing
+
 
         - Run OCR!
 
