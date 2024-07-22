@@ -470,7 +470,7 @@ While I cannot liberate the hardware requirements, I did see an opportunity to a
     - `git clone` and `cd` repo:
 
         ```
-        git clone https://github.com/Dao-AILab/flash-attention.git
+        git clone -b v2.5.9.post1 https://github.com/Dao-AILab/flash-attention.git
         cd flash-attention
         ```
 
